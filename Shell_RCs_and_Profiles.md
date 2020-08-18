@@ -4,6 +4,9 @@
     - \>\> = Fallback to next file, OR programmed to go next file in addition to previous file
     - \>  = Fallback to next file found, should stop at first found
 
+---
+
+# BASH
 ## /bin/bash
 - https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Bash-Startup-Files
 - Unequal effective vs real UID/GID, bash behaves very differently, likely ignoring startup files and env vars
@@ -22,6 +25,22 @@
 ### Non-Interactive
 - if shell env variable BASH_ENV has filename defined in value R+X filename, `if [ -n "$BASH_ENV" ]; then . "$BASH_ENV"; fi`
     - Does not use PATH variable to locate BASH_ENV=filename
+    
+### What is interactive?
+- Can use a special character test, or check if PS1 env var is set
+```
+case "$-" in
+*i*)	echo This shell is interactive ;;
+*)	echo This shell is not interactive ;;
+esac
+
+# OR
+if [ -z "$PS1" ]; then
+        echo This shell is not interactive
+else
+        echo This shell is interactive
+fi
+```
     
 ## /bin/sh linked to /bin/bash
 - Invoking bash as `sh`
@@ -49,3 +68,8 @@
 
 ## /bin/sh linked to /bin/bash, invoked by rshd or sshd
 - No startup files are read
+
+---
+
+# ZSH
+## /usr/bin/zsh
