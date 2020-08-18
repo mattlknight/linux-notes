@@ -74,6 +74,7 @@ fi
 # ZSH
 ## /usr/bin/zsh
 - http://zsh.sourceforge.net/Intro/intro_3.html
+- http://zsh.sourceforge.net/Doc/Release/The-Z-Shell-Manual.html#The-Z-Shell-Manual
 - Defaults to $HOME if $ZDOTDIR is not defined
 
 ### Config files for ZSH
