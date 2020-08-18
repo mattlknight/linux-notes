@@ -78,6 +78,7 @@ fi
 - Defaults to $HOME if $ZDOTDIR is not defined
 
 ### Config files for ZSH
+- Each config file has a counterpart /etc/{config_file}, the /etc file is always R+X before the $ZDOTDIR file
 - $ZDOTDIR/.zshenv
 - $ZDOTDIR/.zprofile
 - $ZDOTDIR/.zshrc
