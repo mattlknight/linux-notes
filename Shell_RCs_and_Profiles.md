@@ -73,3 +73,22 @@ fi
 
 # ZSH
 ## /usr/bin/zsh
+- http://zsh.sourceforge.net/Intro/intro_3.html
+- Defaults to $HOME if $ZDOTDIR is not defined
+
+### Config files for ZSH
+- $ZDOTDIR/.zshenv
+- $ZDOTDIR/.zprofile
+- $ZDOTDIR/.zshrc
+- $ZDOTDIR/.zlogin
+- $ZDOTDIR/.zlogout
+
+### Config Usage
+- `.zshenv` always invoked, unless `-f` passed to `zsh`, sets command search path and env vars, should not produce output or depend on tty
+- `.zshrc` is sourced in interactive shells. It should contain commands to set up aliases, functions, options, key bindings, etc.
+- `.zlogin` is sourced in login shells. It should contain commands that should be executed only in login shells.
+    - Is not the place for alias definitions, options, environment variable settings, etc..
+    - As a general rule, it should not change the shell environment at all. Rather, it should be used to set the terminal type and run a series of external commands (fortune, msgs, etc). 
+- `.zlogout` is sourced when login shells exit.
+- `.zprofile` is similar to `.zlogin`, except that it is sourced before `.zshrc`.
+    - Is meant as an alternative to `.zlogin` for ksh fans; the two are not intended to be used together.
