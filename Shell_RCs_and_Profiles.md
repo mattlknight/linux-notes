@@ -1,11 +1,12 @@
 # Shell RC and Profile Files
 - Conventions Used
     - R+X = Read FILE if it exists, execute commands within file
-    - >> = Fallback to next file, OR programmed to go next file in addition to previous file
-    - >  = Fallback to next file found, should stop at first found
+    - \>\> = Fallback to next file, OR programmed to go next file in addition to previous file
+    - \>  = Fallback to next file found, should stop at first found
 
 ## /bin/bash
 - https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Bash-Startup-Files
+- Unequal effective vs real UID/GID, bash behaves very differently, likely ignoring startup files and env vars
 
 ### Interactive + Login, OR /bin/bash --login
 - R+X /etc/profile >> ~/.bash_profile > ~/.bash_login > ~/.profile
@@ -32,6 +33,19 @@
 
 ### Interactive + Non-Login
 - if shell env variable ENV has filename defined in value R+X filename, `if [ -n "$ENV" ]; then . "$ENV"; fi`
+    - Does not use PATH variable to locate ENV=filename
 
 ### Non-Interactive
+- No startup files are read
+
+## /bin/bash POSIX Mode
+- if shell env variable ENV has filename defined in value R+X filename, `if [ -n "$ENV" ]; then . "$ENV"; fi`
+    - Does not use PATH variable to locate ENV=filename
+- No other startup files are read
+
+## /bin/bash invoked by rshd or sshd
+- R+X ~/.bashrc
+- --norc and --rcfile may also be used, but rshd/sshd rarely use/allow these variables to execute shell
+
+## /bin/sh linked to /bin/bash, invoked by rshd or sshd
 - No startup files are read
